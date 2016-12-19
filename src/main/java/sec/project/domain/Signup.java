@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @Entity
 public class Signup extends AbstractPersistable<Long> {
 
+    private int uid;
     private String name;
     private String address;
 
@@ -18,7 +19,22 @@ public class Signup extends AbstractPersistable<Long> {
         this.name = name;
         this.address = address;
     }
+    
+    public Signup(int uid, String name, String address) {
+        this();
+        this.uid = uid;
+        this.name = name;
+        this.address = address;
+    }
 
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+    
     public String getName() {
         return name;
     }
