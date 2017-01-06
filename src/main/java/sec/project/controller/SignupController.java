@@ -20,7 +20,12 @@ public class SignupController {
     public String defaultMapping() {
         return "redirect:/form";
     }
-
+    
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+    
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     public String loadForm() {
         return "form";
