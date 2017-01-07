@@ -1,6 +1,7 @@
 package sec.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class SignupController {
 
     @RequestMapping("*")
     public String defaultMapping() {
-        return "redirect:/form";
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -27,7 +28,8 @@ public class SignupController {
     }
     
     @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String loadForm() {
+    public String loadForm(Authentication authentication) {
+        String name = authentication.getName();
         return "form";
     }
 
@@ -42,7 +44,7 @@ public class SignupController {
     //@RequestMapping(value = "/form/edit", method = RequestMethod.GET)
     //public String editDetails() {
         model.addAttribute("account", signupRepository.findOne(id));
-        return "edit";
+        return "form";
     }
 
 }
