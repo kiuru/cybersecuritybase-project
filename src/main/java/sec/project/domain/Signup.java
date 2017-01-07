@@ -16,10 +16,12 @@ public class Signup extends AbstractPersistable<Long> {
         super();
     }
 
-    public Signup(String name, String address) {
+    public Signup(String name, String address, String username, String password) {
         this();
         this.name = name;
         this.address = address;
+        this.username = username;
+        this.password = password;
     }
     
     public Signup(int uid, String name, String address) {
@@ -27,6 +29,8 @@ public class Signup extends AbstractPersistable<Long> {
         this.uid = uid;
         this.name = name;
         this.address = address;
+        this.username = username;
+        this.password = password;
     }
 
     public int getUid() {

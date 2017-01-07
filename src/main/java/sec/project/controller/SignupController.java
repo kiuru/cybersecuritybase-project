@@ -23,6 +23,11 @@ public class SignupController {
         return "redirect:/form";
     }
     
+    @RequestMapping(value = "/done", method = RequestMethod.GET)
+    public String done() {
+        return "done";
+    }
+    
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, Authentication auth) {
         model.addAttribute("signups", signupRepository.findAll());
@@ -35,9 +40,9 @@ public class SignupController {
         return "form";
     }
 
-    @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String submitForm(@RequestParam String name, @RequestParam String address) {
-        signupRepository.save(new Signup(name, address));
+    @RequestMapping(value = "/done", method = RequestMethod.POST)
+    public String submitForm(@RequestParam String name, @RequestParam String address, @RequestParam String username, @RequestParam String password) {
+        signupRepository.save(new Signup(name, address, username, password));
         return "done";
     }
     
