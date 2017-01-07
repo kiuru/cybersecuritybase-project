@@ -26,6 +26,8 @@
             <span style="color:red;">Login failed. Invalid username or password.</span>
         </div>
         
-        <p></p>
+        <ul th:each="signup : ${signups}">
+            <li th:utext="${signup.name}"></li>
+        </ul>
     </body>
 </html>

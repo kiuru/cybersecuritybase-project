@@ -1,5 +1,6 @@
 package sec.project.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,8 @@ public class SignupController {
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    public String login(Model model, Authentication auth) {
+        model.addAttribute("signups", signupRepository.findAll());
         return "login";
     }
     
@@ -47,4 +49,19 @@ public class SignupController {
         return "form";
     }
 
+    @RequestMapping(value = "/form/edit", method = RequestMethod.GET)
+    public String edit(Model model, Authentication auth, @RequestParam String name, @RequestParam String address) {
+        
+        Signup signup = signupRepository.findByUsername(auth.getName());
+        if (!signup.getName().equals(name)) {
+            signup.setName(name);
+        }
+        if (!signup.getAddress().equals(address)) {
+            signup.setAddress(address);
+        }
+        signupRepository.save(signup);
+        
+        return "redirect:/form";
+    }
+    
 }
