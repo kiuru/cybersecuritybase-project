@@ -19,7 +19,7 @@ public class SignupController {
 
     @RequestMapping("*")
     public String defaultMapping() {
-        return "redirect:/login";
+        return "redirect:/form";
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -28,8 +28,8 @@ public class SignupController {
     }
     
     @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String loadForm(Authentication authentication) {
-        String name = authentication.getName();
+    public String loadForm(Model model, Authentication auth) {
+        model.addAttribute("signup", signupRepository.findByUsername(auth.getName()));
         return "form";
     }
 
