@@ -18,5 +18,12 @@
             <input type="submit" value="Update"/>
         </form>
         
+        Change password:
+        <form th:action="@{/changepass}" method="post">
+            Old password: <input type="text" name="oldpass" /><br/>
+            New password: <input type="text" name="newpass" /><br/>
+            <input type="submit" value="Change" />
+        </form>
+
     </body>
 </html>

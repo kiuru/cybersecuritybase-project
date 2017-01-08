@@ -45,6 +45,14 @@ public class SignupController {
         return "done";
     }
     
+    @RequestMapping(value = "/changepass", method = RequestMethod.POST)
+    public String submitForm(Authentication auth, @RequestParam(value="newpass", required=false) String newpass, @RequestParam(value="oldpass", required=false) String oldpass) {
+        Signup signup = signupRepository.findByUsername(auth.getName());
+        signup.setPassword(newpass);
+        signupRepository.save(signup);
+        return "redirect:/form";
+    }
+    
     @RequestMapping(value = "/form/edit/{id}", method = RequestMethod.GET)
     public String editDetails(Model model, @PathVariable Long id) {
     //@RequestMapping(value = "/form/edit", method = RequestMethod.GET)

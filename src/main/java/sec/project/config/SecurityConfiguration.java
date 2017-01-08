@@ -24,6 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // no real security at the moment
         //http.authorizeRequests()
         //        .anyRequest().permitAll();
+        http.csrf().disable();
         
         http.authorizeRequests()
             .antMatchers("/", "/login", "/done").permitAll()
@@ -34,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
         .logout()
             .permitAll();
+        
     }
 
     @Autowired
