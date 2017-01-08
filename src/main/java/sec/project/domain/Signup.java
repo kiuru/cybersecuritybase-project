@@ -11,26 +11,29 @@ public class Signup extends AbstractPersistable<Long> {
     private String address;
     private String username;
     private String password;
+    private String website;
 
     public Signup() {
         super();
     }
 
-    public Signup(String name, String address, String username, String password) {
+    public Signup(String name, String address, String username, String password, String website) {
         this();
         this.name = name;
         this.address = address;
         this.username = username;
         this.password = password;
+        this.website = website;
     }
     
-    public Signup(int uid, String name, String address) {
+    public Signup(int uid, String name, String address, String website) {
         this();
         this.uid = uid;
         this.name = name;
         this.address = address;
         this.username = username;
         this.password = password;
+        this.website = website;
     }
 
     public int getUid() {
@@ -71,6 +74,14 @@ public class Signup extends AbstractPersistable<Long> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
 }

@@ -1,6 +1,5 @@
 package sec.project.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -41,8 +40,8 @@ public class SignupController {
     }
 
     @RequestMapping(value = "/done", method = RequestMethod.POST)
-    public String submitForm(@RequestParam String name, @RequestParam String address, @RequestParam String username, @RequestParam String password) {
-        signupRepository.save(new Signup(name, address, username, password));
+    public String submitForm(@RequestParam String name, @RequestParam String address, @RequestParam String username, @RequestParam String password, @RequestParam String website) {
+        signupRepository.save(new Signup(name, address, username, password, website));
         return "done";
     }
     
@@ -55,15 +54,11 @@ public class SignupController {
     }
 
     @RequestMapping(value = "/form/edit", method = RequestMethod.GET)
-    public String edit(Model model, Authentication auth, @RequestParam String name, @RequestParam String address) {
-        
+    public String edit(Model model, Authentication auth, @RequestParam(value="name", required=true) String name, @RequestParam(value="address", required=true) String address, @RequestParam(value="website", required=true) String website) {
         Signup signup = signupRepository.findByUsername(auth.getName());
-        if (!signup.getName().equals(name)) {
-            signup.setName(name);
-        }
-        if (!signup.getAddress().equals(address)) {
-            signup.setAddress(address);
-        }
+        signup.setName(name);
+        signup.setAddress(address);
+        signup.setWebsite(website);
         signupRepository.save(signup);
         
         return "redirect:/form";

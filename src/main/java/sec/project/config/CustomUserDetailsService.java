@@ -28,6 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         Signup signup = new Signup();
         signup.setName("Niko");
         signup.setAddress("Address 1");
+        signup.setWebsite("http://localhost");
         signup.setUsername("niko");
         signup.setPassword("niko");
         signupRepository.save(signup);
