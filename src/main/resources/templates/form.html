@@ -19,9 +19,9 @@
         </form>
         
         Change password:
-        <form th:action="@{/changepass}" method="post">
-            Old password: <input type="text" name="oldpass" /><br/>
-            New password: <input type="text" name="newpass" /><br/>
+        <form name="changepass_form" th:action="@{/changepass}" method="post">
+            Old password: <input type="text" id="oldpass" name="oldpass" /><br/>
+            New password: <input type="text" id="newpass" name="newpass" /><br/>
             <input type="submit" value="Change" />
         </form>
 
