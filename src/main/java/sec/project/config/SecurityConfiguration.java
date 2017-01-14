@@ -28,6 +28,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().xssProtection().disable();
         http.headers().frameOptions().disable();
         
+        // Disable generating new session key a log in
+        http.sessionManagement().sessionFixation().none();
+        
         http.authorizeRequests()
             .antMatchers("/", "/login", "/done").permitAll()
             .anyRequest().authenticated()
