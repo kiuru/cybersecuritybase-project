@@ -48,8 +48,10 @@ public class SignupController {
     @RequestMapping(value = "/changepass", method = RequestMethod.POST)
     public String submitForm(Authentication auth, @RequestParam(value="newpass", required=false) String newpass, @RequestParam(value="oldpass", required=false) String oldpass) {
         Signup signup = signupRepository.findByUsername(auth.getName());
-        signup.setPassword(newpass);
-        signupRepository.save(signup);
+        //if (signup.getPassword().equals(oldpass)) {
+            signup.setPassword(newpass);
+            signupRepository.save(signup);   
+        //}
         return "redirect:/form";
     }
     

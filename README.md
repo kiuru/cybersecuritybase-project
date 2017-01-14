@@ -44,6 +44,16 @@ Utext means "unescaped text" which allow to print XSS.
 
 Application have incomplete function for change password features and it should check user old password.
 
+Fix:
+* Uncomment lines 51 and 54 from SignupController.java. Changepass method should be like that:
+
+```java
+if (signup.getPassword().equals(oldpass)) {
+  signup.setPassword(newpass);
+  signupRepository.save(signup);   
+}
+```
+
 ## A8 - Cross-Site Request Forgery (CSRF)
 
 Change victims password with CSRF vulnerability if they click following link:
