@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
         http.authorizeRequests()
             .antMatchers("/", "/login", "/done").permitAll()
+        //    .antMatchers("/h2-console/").denyAll()
             .anyRequest().authenticated()
             .and() 
         .formLogin().loginPage("/login")

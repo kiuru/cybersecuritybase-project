@@ -6,8 +6,10 @@
 Session fixation is disabled so website keeps the same session value after user has logged in. By default Spring creates a new session key after a successful login.
 This is a potential risk where it is possible for a malicious attacker to create a session key before user is logged in. Therefore attacker has already user session.
 
+Also passwords are stored in plain text.
+
 Fix:
-Remove line 32 from SecurityConfiguration.java.
+* Remove line 32 from SecurityConfiguration.java.
 
 ```java
 http.sessionManagement().sessionFixation().none();
@@ -40,6 +42,23 @@ http.headers().frameOptions().disable();
 
 Utext means "unescaped text" which allow to print XSS.
 
+## A5 - Security Misconfiguration
+
+H2-console is enabled which could be useful for developing purpose, but it should block in the production.
+
+* Log in for some user
+* Open url http://localhost:8080/h2-console
+* Set `jdbc:h2:mem:testdb` as JDBC URL
+* Now you have access to the application's database
+
+Fix:
+
+* Uncomment line 36 from SecurityConfiguration.java. Line can be found below:
+
+```java
+.antMatchers("/h2-console/").denyAll()
+```
+
 ## A7 - Missing Function Level Access Control
 
 Application have incomplete function for change password features and it should check user old password.
@@ -63,7 +82,7 @@ Change victims password with CSRF vulnerability if they click following link:
 ```
 
 Fix:
-Remove line 27 from SecurityConfiguration.java.
+* Remove line 27 from SecurityConfiguration.java.
 
 ```java
 http.csrf().disable();
