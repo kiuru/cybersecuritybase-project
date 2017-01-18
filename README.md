@@ -1,7 +1,19 @@
 # F-secure Cyber Security Base - Project
 ====
 
-## A2 - Broken Authentication and Session Management
+This project is part of the course Cyber Security Course Base with F-Secure. Link to course's homepage: https://cybersecuritybase.github.io, and link to this assigment: https://cybersecuritybase.github.io/project.
+
+In shortly, our task was to create a web application that has at least five different flaws from the OWASP top ten list.
+
+Project comes with one already signed up user:
+
+| Username | Password |
+| -------- | -------- |
+| niko     | niko     |
+
+## Created flaws and fixes
+
+### A2 - Broken Authentication and Session Management
 
 Session fixation is disabled so website keeps the same session value after user has logged in. By default Spring creates a new session key after a successful login.
 This is a potential risk where it is possible for a malicious attacker to create a session key before user is logged in. Therefore attacker has already user session.
@@ -15,7 +27,7 @@ Fix:
 http.sessionManagement().sessionFixation().none();
 ```
 
-## A3 - Cross-Site Scripting (XSS)
+### A3 - Cross-Site Scripting (XSS)
 
 Application doesn't have XSS validation so it's easy to change their password with simple XSS.
 
@@ -42,7 +54,7 @@ http.headers().frameOptions().disable();
 
 Utext means "unescaped text" which allow to print XSS.
 
-## A5 - Security Misconfiguration
+### A5 - Security Misconfiguration
 
 H2-console is enabled which could be useful for developing purpose, but it should block in the production.
 
@@ -59,7 +71,7 @@ Fix:
 .antMatchers("/h2-console/").denyAll()
 ```
 
-## A7 - Missing Function Level Access Control
+### A7 - Missing Function Level Access Control
 
 Application have incomplete function for change password features and it should check user old password.
 
@@ -73,7 +85,7 @@ if (signup.getPassword().equals(oldpass)) {
 }
 ```
 
-## A8 - Cross-Site Request Forgery (CSRF)
+### A8 - Cross-Site Request Forgery (CSRF)
 
 Change victims password with CSRF vulnerability if they click following link:
 
