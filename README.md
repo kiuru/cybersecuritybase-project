@@ -5,6 +5,20 @@ This project is part of the course Cyber Security Course Base with F-Secure. Lin
 
 In shortly, our task was to create a web application that has at least five different flaws from the OWASP top ten list.
 
+The application is simple signup form. You can signup to application and later to sign in to edit contact details.
+
+Application have the following structure:
+
+HTTP GET:
+* /form
+* /login
+* /form/edit
+* /form/edit/{id}
+
+HTTP POST:
+* /done
+* /changepass
+
 Project comes with one already signed up user:
 
 | Username | Password |
@@ -73,7 +87,9 @@ Fix:
 
 ### A7 - Missing Function Level Access Control
 
-Application have incomplete function for change password features and it should check user old password.
+At first Application have incomplete function for change password features and it should check user old password.
+
+Second vulnerablility is that I had left function which makes possible to get any user details if know its id number. Id number ascending systematically (x+1) so it is easy to explore users details.
 
 Fix:
 * Uncomment lines 51 and 54 from SignupController.java. Changepass method should be like that:
@@ -84,6 +100,8 @@ if (signup.getPassword().equals(oldpass)) {
   signupRepository.save(signup);   
 }
 ```
+
+* Comment whole editDetails method (lines 58 - 64) from SignupController.java.
 
 ### A8 - Cross-Site Request Forgery (CSRF)
 
