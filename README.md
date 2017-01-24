@@ -89,7 +89,7 @@ Fix:
 
 At first Application have incomplete function for change password features and it should check user old password.
 
-Second vulnerablility is that I had left function which makes possible to get any user details if know its id number. Id number ascending systematically (x+1) so it is easy to explore users details.
+Second vulnerablility is that I had left function which makes possible to get any user details if know its id number. Id number ascending systematically (x+1) so it is easy to explore users details, like http://localhost:8080/edit/1.
 
 Fix:
 * Uncomment lines 51 and 54 from SignupController.java. Changepass method should be like that:
